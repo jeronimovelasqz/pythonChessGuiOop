@@ -28,4 +28,4 @@ class Juego:
         titulo_ventana = "Ajedrez"
 
         #icon_src = future image
-
+        #OHLAS
