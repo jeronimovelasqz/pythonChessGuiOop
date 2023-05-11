@@ -61,3 +61,47 @@ def empezar_juego(self):
 
     # inicializar lista de posiciones actuales del tablero
     self.localizaciones_tablero = []
+
+    # calcular coordenadas de cada cuadro de juego
+
+    for coordenada_x in range(0, 8):
+        self.localizaciones_tablero.append([])
+        for coordenada_y in range(0, 8):
+            self.localizaciones_tablero[coordenada_x].append([self.balance_pantalla_x + (coordenada_x * largo_cuadrado),
+                                                              self.balance_pantalla_y + (coordenada_y * largo_cuadrado)])
+
+
+    # obtener localition de la imagen de cada pieza
+    pieces_src = os.path.join(self.resources, "###########")
+
+    self.ajedrez = Ajedrez(self.pantalla, pieces_src, self.localizaciones_tablero, largo_cuadrado)
+
+    while self.corriendo:
+        self.clock.tick(5)
+
+        for evento in pygame.key.get_pressed():
+
+            boton_presionado = pygame.key.get_pressed()
+
+            if evento.type == pygame.QUIT or boton_presionado[K_ESCAPE]:
+
+                self.corriendo = False
+
+            elif boton_presionado[K_SPACE]:
+                self.ajedrez.reset()
+
+            ganador = self.ajedrez.ganador
+
+            if not self.desplegar_menu:
+                self.menu()
+
+            elif len(ganador) > 0:
+                self.declarar_ganador(ganador)
+
+            else:
+                self.juego()
+
+            pygame.display.flip()
+
+            pygame.event.pump()
+        pygame.quit()
