@@ -105,3 +105,26 @@ def empezar_juego(self):
 
             pygame.event.pump()
         pygame.quit()
+
+
+    def menu(self):
+
+        color_fondo = (255, 255, 255)
+        self.pantalla.fill(color_fondo)
+        color_negro = (0, 0 ,0)
+
+        boton_inicio = pygame.Rect(270, 300, 100, 50)
+        pygame.draw.rect(self.pantalla, color_negro, boton_inicio)
+
+
+        color_blanco = (255, 255, 255)
+
+        FUENTE_GRANDE = pygame.font.SysFont("Cooper black", 50)
+        FUENTE_PEQUENA = pygame.font.SysFont("Cooper black", 20)
+
+        TEXTO_BIENVENIDA = FUENTE_GRANDE.render("Chess", False, color_negro)
+        PROYECTO = FUENTE_PEQUENA.render("entrega final, APOO", True, color_negro)
+
+
+        self.pantalla.blit(PROYECTO, (self.pantalla.ob)
+
