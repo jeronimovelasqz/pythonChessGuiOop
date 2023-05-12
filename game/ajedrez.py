@@ -179,7 +179,7 @@ class Ajedrez(object):
             coordenada_x, coordenada_y = coordenada_pieza
 
             if nombre_pieza[6:] == "bishop":
-                positions = self.diagonal_moves(positions, nombre_pieza, coordenada_pieza)
+                positions = self.movimientos_diagonales(positions, nombre_pieza, coordenada_pieza)
 
 
             elif nombre_pieza[6:] == "peon":
@@ -260,7 +260,7 @@ class Ajedrez(object):
 
             elif nombre_pieza[6:] == "torre":
                 # find linear moves
-                positions = self.linear_moves(positions, nombre_pieza, coordenada_pieza)
+                positions = self.movimientos_lineales(positions, nombre_pieza, coordenada_pieza)
 
 
             elif nombre_pieza[6:] == "caballo":
@@ -322,9 +322,9 @@ class Ajedrez(object):
 
             elif nombre_pieza[6:] == "reina":
 
-                positions = self.diagonal_moves(positions, nombre_pieza, coordenada_pieza)
+                positions = self.movimientos_diagonales(positions, nombre_pieza, coordenada_pieza)
 
-                positions = self.linear_moves(positions, nombre_pieza, coordenada_pieza)
+                positions = self.movimientos_lineales(positions, nombre_pieza, coordenada_pieza)
 
             para_remover = []
 
@@ -343,7 +343,7 @@ class Ajedrez(object):
 
         return positions
 
-    def move_piece(self, turno):
+    def mover_pieza(self, turno):
 
         cuadro = self.obtener_cuadrado_selecionado()
 
@@ -420,14 +420,14 @@ class Ajedrez(object):
             return None
 
 
-    def capture_piece(self, turno, coordenada_tablero, coordenada_pieza):
+    def capturar_pieza(self, turno, coordenada_tablero, coordenada_pieza):
 
         x, y = coordenada_pieza
 
 
-        columnChar, rowNo = coordenada_tablero
+        columna_numero, fila_numero = coordenada_tablero
 
-        p = self.localizacion_pieza[columnChar][rowNo]
+        p = self.localizacion_pieza[columna_numero][fila_numero]
 
         if p[0] == "rey_blanco":
             self.ganador = "Negras"
@@ -442,7 +442,7 @@ class Ajedrez(object):
         self.validar_movimiento(coordenada_pieza)
 
 
-    def validate_move(self, destino):
+    def validar_movimiento(self, destino):
         destino_numero_columna = chr(97 + destino[0])
         destino_numero_fila = 8 - destino[1]
 
@@ -476,7 +476,7 @@ class Ajedrez(object):
                     print("{} moved from {} to {}".format(buscar_nombre, buscar_localizacion, buscar_destino))
 
 
-    def diagonal_moves(self, posiciones, nombre_piezas, coordenada_pieza):
+    def movimientos_diagonales(self, posiciones, nombre_piezas, coordenada_pieza):
 
         x, y = coordenada_pieza
 
@@ -555,6 +555,74 @@ class Ajedrez(object):
 
 
             if len(p[0]) > 0 and nombre_piezas[:5] != p[:5]:
+                break
+
+        return posiciones
+
+
+    def movimientos_lineales(self, posiciones, nombre_pieza, coordenada_pieza):
+
+        x, y = coordenada_pieza
+
+        while x > 0:
+            x = x - 1
+            posiciones.append([x, y])
+
+
+            columna_numero = chr(97 + x)
+            fila_numero = 8 - y
+            p = self.localizacion_pieza[columna_numero][fila_numero]
+
+
+            if len(p[0]) > 0 and nombre_pieza[:5] != p[:5]:
+                break
+
+
+        x, y = coordenada_pieza
+
+        while x < 7:
+            x = x + 1
+            posiciones.append([x, y])
+
+
+            columna_numero = chr(97 + x)
+            fila_numero = 8 - y
+            p = self.localizacion_pieza[columna_numero][fila_numero]
+
+
+            if len(p[0]) > 0 and nombre_pieza[:5] != p[:5]:
+                break
+
+
+        x, y = coordenada_pieza
+
+        while y > 0:
+            y = y - 1
+            posiciones.append([x, y])
+
+
+            columna_numero = chr(97 + x)
+            fila_numero = 8 - y
+            p = self.localizacion_pieza[columna_numero][fila_numero]
+
+
+            if len(p[0]) > 0 and nombre_pieza[:5] != p[:5]:
+                break
+
+
+        x, y = coordenada_pieza
+
+        while y < 7:
+            y = y + 1
+            posiciones.append([x, y])
+
+
+            columna_numero = chr(97 + x)
+            fila_numero = 8 - y
+            p = self.localizacion_pieza[columna_numero][fila_numero]
+
+
+            if len(p[0]) > 0 and nombre_pieza[:5] != p[:5]:
                 break
 
         return posiciones
