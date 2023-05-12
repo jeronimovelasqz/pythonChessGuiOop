@@ -1,7 +1,8 @@
 import os
+
 import pygame
 from pygame.locals import *
-from pieza import Pieza
+
 from ajedrez import Ajedrez
 from eventos import Eventos
 
@@ -22,7 +23,8 @@ class Juego:
         # variable booleana para inicializar loop del juego
         self.corriendo = True
         # base de los recursos del programa
-        self.recursos = "rec"
+        self.res = "res"
+        self.recursos = self.res
 
         # inicializa ventana
         pygame.display.init()
@@ -34,15 +36,15 @@ class Juego:
 
         # titulo de la ventana
         titulo_ventana = "Ajedrez"
-        # poner subtitulos de ventana
+        # poner subtitles de ventana
         pygame.display.set_caption(titulo_ventana)
 
         # obtener posicion del icono
-        icon_src = os.path.join(self.recursos, "#####")
+        icon_src = os.path.join(self.recursos, "../res/chess_icon.png")
         # cargar icono
         icono = pygame.image.load(icon_src)
         # poner icono
-        pygame.display.set_icon(icon_src)
+        pygame.display.set_icon(icono)
         # actualizar pantalla
         pygame.display.flip()
         # poner tiempo reloj
@@ -54,7 +56,7 @@ class Juego:
         self.balance_tablero_y = 125
         self.dimensiones_tablero = (self.balance_tablero_x, self.balance_tablero_y)
 
-        buscar_tablero = os.path.join(self.recursos, "board.png")
+        buscar_tablero = os.path.join(self.recursos, "../res/board.png")
 
         self.imagen_tablero = pygame.image.load(buscar_tablero).convert()
 
@@ -68,7 +70,7 @@ class Juego:
                 self.localizacion_tablero[x].append([self.balance_tablero_x + (x * tamano_cuadrado),
                                                      self.balance_tablero_y + (y * tamano_cuadrado)])
 
-        buscar_piezas = os.path.join(self.recursos, "pieces.png")
+        buscar_piezas = os.path.join(self.recursos, "../res/pieces.png")
 
         self.ajedrez = Ajedrez(self.pantalla, buscar_piezas, self.localizacion_tablero, tamano_cuadrado)
 
