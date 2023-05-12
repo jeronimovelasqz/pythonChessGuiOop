@@ -9,15 +9,15 @@ class Pieza(pygame.sprite.Sprite):
             "peon_blanco": 5,
             "caballo_blanco": 3,
             "alfil_blanco": 2,
-            "torre_blanca": 4,
+            "torre_blanco": 4,
             "rey_blanco": 0,
-            "reina_blanca": 1,
+            "reina_blanco": 1,
             "peon_negro": 11,
             "caballo_negro": 9,
             "alfil_negro": 8,
-            "torre_negra": 10,
+            "torre_negro": 10,
             "rey_negro": 6,
-            "reina_negra": 7
+            "reina_negro": 7
         }
 
         self.spritesheet = pygame.image.load(filename).convert_alpha()
@@ -32,7 +32,7 @@ class Pieza(pygame.sprite.Sprite):
 
         self.casillas = list([(i % columnas * ancho, i // columnas * largo, ancho, largo) for i in range(self.contar_casillas)])
 
-    def dibuja(self, superficie, nombre_pieza, coordenadas):
+    def dibujar(self, superficie, nombre_pieza, coordenadas):
         indice_pieza = self.piezas[nombre_pieza]
         superficie.blit(self.spritesheet, coordenadas, self.casillas[indice_pieza])
 
