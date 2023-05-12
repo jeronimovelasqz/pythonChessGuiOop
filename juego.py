@@ -40,7 +40,7 @@ class Juego:
         pygame.display.set_caption(titulo_ventana)
 
         # obtener posicion del icono
-        icon_src = os.path.join(self.recursos, "../res/chess_icon.png")
+        icon_src = os.path.join(self.recursos, "chess_icon.png")
         # cargar icono
         icono = pygame.image.load(icon_src)
         # poner icono
@@ -56,7 +56,7 @@ class Juego:
         self.balance_tablero_y = 125
         self.dimensiones_tablero = (self.balance_tablero_x, self.balance_tablero_y)
 
-        buscar_tablero = os.path.join(self.recursos, "../res/board.png")
+        buscar_tablero = os.path.join(self.recursos, "board.png")
 
         self.imagen_tablero = pygame.image.load(buscar_tablero).convert()
 
@@ -70,7 +70,7 @@ class Juego:
                 self.localizacion_tablero[x].append([self.balance_tablero_x + (x * tamano_cuadrado),
                                                      self.balance_tablero_y + (y * tamano_cuadrado)])
 
-        buscar_piezas = os.path.join(self.recursos, "../res/pieces.png")
+        buscar_piezas = os.path.join(self.recursos, "pieces.png")
 
         self.ajedrez = Ajedrez(self.pantalla, buscar_piezas, self.localizacion_tablero, tamano_cuadrado)
 
