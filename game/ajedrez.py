@@ -104,7 +104,7 @@ class Ajedrez(object):
 
         COLOR_BLANCO = (255, 255, 255)
 
-        FUENTE_PEQUENA = pygame.SysFont("Cooper black", 20)
+        FUENTE_PEQUENA = pygame.font.SysFont("Cooper black", 20)
 
         if self.turno["negras"]:
             texto_de_turno = FUENTE_PEQUENA.render("Turno: Negras", True, COLOR_BLANCO)
@@ -117,3 +117,59 @@ class Ajedrez(object):
 
         if self.turno["negras"]:
             self.mover_pieza("negras")
+
+        elif self.turno["blancas"]:
+            self.mover_pieza("blancas")
+
+
+    def dibujar_piezas(self):
+        verde_transparente = (0, 194, 39, 170)
+        rojo_transparente = (255, 0, 0, 170)
+
+        superficie = pygame.Surface((self.tamano_cuadrado, self.tamano_cuadrado), pygame.SRCALPHA)
+        superficie.fill(rojo_transparente)
+
+        superficie_2 = pygame.Surface((self.tamano_cuadrado, self.tamano_cuadrado), pygame.SRCALPHA)
+        superficie_2.fill(verde_transparente)
+
+
+        for val in self.localizacion_pieza.values():
+            for value in val.values():
+
+                nombre_pieza = value[0]
+
+                coordenada_pieza_x, coordenada_pieza_y = value[2]
+
+
+                if value[1] and len(value[0]) > 5:
+                    # if the piece selected is a black piece
+                    if value[0][:5] == "negras":
+                        self.pantalla.blit(superficie, self.localizacion_tablero[coordenada_pieza_x][coordenada_pieza_y])
+                        if len(self.movimientos) > 0:
+                            for move in self.movimientos:
+                                x_coordenada = move[0]
+                                y_coordenada = move[1]
+                                if 0 <= x_coordenada < 8 and 0 <= y_coordenada < 8:
+                                    self.pantalla.blit(superficie, self.localizacion_tablero[x_coordenada][y_coordenada])
+                    # if the piece selected is a white piece
+                    elif value[0][:5] == "blancas":
+                        self.pantalla.blit(superficie_2, self.localizacion_tablero[coordenada_pieza_x][coordenada_pieza_y])
+                        if len(self.movimientos) > 0:
+                            for move in self.movimientos:
+                                x_coordenada = move[0]
+                                y_coordenada = move[1]
+                                if 0 <= x_coordenada < 8 and 0 <= y_coordenada < 8:
+                                    self.pantalla.blit(superficie_2, self.localizacion_tablero[x_coordenada][y_coordenada])
+
+
+        for val in self.localizacion_pieza.values():
+            for value in val.values():
+                # name of the piece in the current location
+                nombre_pieza = value[0]
+                # x, y coordinates of the current piece
+                coordenada_pieza_x, coordenada_pieza_y = value[2]
+                # check if there is a piece at the square
+                if len(value[0]) > 1:
+                    # draw piece on the board
+                    self.piezas_ajedrez.draw(self.pantalla, nombre_pieza,
+                                           self.localizacion_tablero[coordenada_pieza_x][coordenada_pieza_y])
