@@ -6,20 +6,19 @@ class Pieza(pygame.sprite.Sprite):
     def __init__(self, filename, columnas, filas):
         pygame.sprite.Sprite.__init__(self)
         self.piezas = {
-            "peon_blanco": 5,
-            "caballo_blanco": 3,
-            "alfil_blanco": 2,
-            "torre_blanco": 4,
-            "rey_blanco": 0,
-            "reina_blanco": 1,
-            "peon_negro": 11,
-            "caballo_negro": 9,
-            "alfil_negro": 8,
-            "torre_negro": 10,
-            "rey_negro": 6,
-            "reina_negro": 7
+            "white_pawn": 5,
+            "white_knight": 3,
+            "white_bishop": 2,
+            "white_rook": 4,
+            "white_king": 0,
+            "white_queen": 1,
+            "black_pawn": 11,
+            "black_knight": 9,
+            "black_bishop": 8,
+            "black_rook": 10,
+            "black_king": 6,
+            "black_queen": 7
         }
-
         self.spritesheet = pygame.image.load(filename).convert_alpha()
 
         self.columnas = columnas
