@@ -89,7 +89,7 @@ class Juego:
             if not self.menu_desplegado:
                 self.menu()
             elif len(winner) > 0:
-                self.declare_winner(winner)
+                self.declarar_ganador(winner)
             else:
                 self.juego()
 
