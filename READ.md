@@ -1,1 +1,1 @@
-[ver archivo pdf](https://www.canva.com/design/DAFjXyhr9xo/3uUvak17iwQb9hDM_Gbx9A/edit?utm_content=DAFjXyhr9xo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[ver archivo pdf](https://www.canva.com/design/DAFjXyhr9xo/bAVxCH_-SONI6Va_v3RZbw/view)
