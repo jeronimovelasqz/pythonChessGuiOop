@@ -38,9 +38,9 @@ class Ajedrez(object):
             "black_queen": 7
         }
 
-        # list containing captured pieces
+
         self.capturado = []
-        #
+
         self.ganador = ""
 
         self.resetear()
@@ -98,7 +98,7 @@ class Ajedrez(object):
                         self.localizacion_piezas[chr(i)][x][0] = "white_king"
                 x = x - 1
 
-    #
+
     def jugar_turno(self):
 
         color_blanco = (255, 255, 255)

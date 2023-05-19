@@ -174,7 +174,7 @@ class Juego:
         fuente_grande = pygame.font.SysFont("Cooper black", 50)
         fuente_pequena = pygame.font.SysFont("Cooper black", 20)
 
-        # text to show winner
+
         texto = ganador + " gana!"
         texto_ganador = fuente_grande.render(texto, False, color_negro)
 
@@ -182,7 +182,7 @@ class Juego:
         label_de_reset = "Juega de nuevo"
         boton_label_reset = fuente_pequena.render(label_de_reset, True, color_blanco)
 
-        # show winner text
+
         self.pantalla.blit(texto_ganador,
                            ((self.pantalla.get_width() - texto_ganador.get_width()) // 2,
                             150))
